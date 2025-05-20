@@ -4,6 +4,8 @@
 Пример: Введите число: 10  Вывод: 0 2 4 6 8 10
 Усложнёнка (по желанию): Сделай, чтобы числа выводились через запятую, но без лишней запятой в конце.
 """
+from importlib.resources import read_text
+
 
 def even_and_odd():
     N = int(input('Введите число: '))
@@ -56,12 +58,92 @@ def palindrome():
 Угадал! Число: 63. Кол-во попыток: 5
 
 """
+import random
+def guess_the_number():
+    hidden_number = random.randint(1, 100)
+    low = 1
+    higt = 100
+    count = 0
+
+    while True:
+        guess = (higt + low) // 2
+        count += 1
+        if hidden_number < guess :
+            print(f'Ищем в диапазоне от {low} до {higt}')
+            print(f'Попытка {count} Пробуем число: {guess }')
+            higt = guess -1
+        elif hidden_number > guess :
+            print(f'Ищем в диапазоне от {low} до {higt}')
+            print(f'Попытка {count} Пробуем число: {guess }')
+            low = guess +1
+        elif hidden_number == guess :
+            print('Загаданное число ',hidden_number)
+            print('Отгаданое: ', guess )
+            break
 
 
+"""
+🧮 Задача №4: Бинарный Поиск по Списку:
+📋 Условие:
+У тебя есть отсортированный список чисел.
+Нужно найти индекс заданного элемента.
+Если такого элемента нет — вернуть -1.
+Пример:
+
+arr = [3, 8, 15, 23, 42, 55, 78, 90]
+target = 42
+# Результат: индекс 4
+
+"""
+unsorted = [2, 15, 18, 11, 56, 5, 21, 45, 65, 89, 45, 12, 63, 74, 2, 1, 36]
+arr = sorted(unsorted)
+print(arr)
+
+def binary_search(arr, target):
+    low = 0
+    hight = len(arr)-1
+
+    while low <= hight:
+        mid = (low + hight) // 2
+        if arr[mid] > target:
+            hight = mid - 1
+            print(f"Ищем в диапазоне от {low} до {hight}")
+        elif arr[mid] < target:
+            low = mid + 1
+            print(f"Ищем в диапазоне от {low} до {hight}")
+        elif arr[mid] == target:
+            return f'Число {target} на индексе {mid}'
+    return -1
+
+
+
+"""
+Бинарный поиск по списку рекурсией
+"""
+low = 0
+hight = len(arr)-1
+
+def binary_search_recurse(arr, target, low, hight):
+    if low > hight:
+        return -1
+    mid = (low + hight) // 2
+    if arr[mid] == target:
+        return (f'Число {target} на индексе {mid}')
+    elif arr[mid] > target:
+        hight = (mid - 1)
+        print(f"Ищем в диапазоне от {low} до {hight}")
+        return binary_search_recurse(arr, target, low, hight)
+    else:
+        low = (mid + 1)
+        print(f"Ищем в диапазоне от {low} до {hight}")
+        return binary_search_recurse(arr, target, low, hight)
 
 
 
 
 if __name__ == '__main__':
-    even_and_odd()
+    # even_and_odd()
     # palindrome()
+    # guess_the_number()
+    # print(binary_search(arr, 15))
+    print(binary_search_recurse(arr, 655, low, hight))
