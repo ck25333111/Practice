@@ -1,5 +1,9 @@
+# ────────────────────────────────────────────────────────────────
+# ИНИЦИАЛИЗАЦИЯ БАЗЫ ДАННЫХ
+# ────────────────────────────────────────────────────────────────
 from loguru import logger
 from Bardak.models.models_base import Furniture, db
+from Bardak.models.logger_model import Logs
 
 
 def initialize() -> None:
@@ -17,7 +21,9 @@ def initialize() -> None:
         db.connect()
     try:
         # Создаём таблицы, если ещё не созданы
-        db.create_tables([Furniture])
+        db.create_tables([Furniture,
+                          Logs
+                          ])
 
         # Добавляем записи мебели, если они ещё не существуют
         Furniture.get_or_create(name='Стол')

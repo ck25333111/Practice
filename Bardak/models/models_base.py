@@ -1,4 +1,6 @@
+# ────────────────────────────────────────────────────────────────
 # Базовая модель
+# ────────────────────────────────────────────────────────────────
 import os
 from peewee import Model, CharField, SqliteDatabase
 from typing import Optional
