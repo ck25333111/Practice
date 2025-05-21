@@ -22,4 +22,5 @@ class Logs(BaseModel):
     module:str = CharField(null=True)   # Имя модуля
     function: str = CharField(null=True)    # Имя функции
     line: int = IntegerField(null=True)     # Номер строки
-    file_path: str = CharField(null=True)   # Путь до файла
+    file_path: str = TextField(null=True)   # Путь до файла
+

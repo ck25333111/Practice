@@ -11,8 +11,9 @@ def test_error() -> None:
     except ZeroDivisionError:
         logger.exception("Упс, деление на ноль!")
 
-test_error()
+
 
 if __name__ == '__main__':
     bootstrap()
     print("Программа готова к работе! 🚀")
+    test_error()

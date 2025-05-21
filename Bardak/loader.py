@@ -1,8 +1,9 @@
 # ────────────────────────────────────────────────────────────────
 # Загрузка и запуск приложения, вызов bootstrap, инициализация
 # ────────────────────────────────────────────────────────────────
-from Bardak.configs.logger_config import logger
 from Bardak.app.init_db import initialize
+from Bardak.configs.logger_config import logger
+
 
 def bootstrap() -> None:
     """
@@ -12,7 +13,6 @@ def bootstrap() -> None:
     - И другие будущие штуки.
     """
     try:
-        logger.info("Старт инициализации приложения...")
         initialize()
         logger.info("Инициализация завершена успешно.")
     except Exception as e:
