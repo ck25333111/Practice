@@ -1,3 +1,6 @@
+# ────────────────────────────────────────────────────────────────
+# Загрузка и запуск приложения, вызов bootstrap, инициализация
+# ────────────────────────────────────────────────────────────────
 from Bardak.configs.logger_config import logger
 from Bardak.app.init_db import initialize
 

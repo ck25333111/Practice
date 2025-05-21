@@ -1,3 +1,6 @@
+# ────────────────────────────────────────────────────────────────
+# Конфигурация логгера Loguru: файлы логов, уровни логов, кастомные sink'и
+# ────────────────────────────────────────────────────────────────
 from loguru import logger
 from Bardak.app.logger_sinks.logs_db_sink import logs_db_sink
 from typing import Any, Dict

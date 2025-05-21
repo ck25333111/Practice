@@ -1,3 +1,7 @@
+# ────────────────────────────────────────────────────────────────
+# Парсинг лог-сообщений для записи в БД
+# ────────────────────────────────────────────────────────────────
+
 from typing import Dict, Any, Optional
 from datetime import datetime
 from loguru._handler import Message
