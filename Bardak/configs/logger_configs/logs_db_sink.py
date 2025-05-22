@@ -3,7 +3,7 @@
 # ────────────────────────────────────────────────────────────────
 
 from Bardak.models.logger_model import Logs
-from Bardak.app.logger_sinks.parse_log import parse_log_message
+from Bardak.configs.logger_configs.log_parser import parse_log_message
 from loguru import logger
 from typing import TYPE_CHECKING, Any
 

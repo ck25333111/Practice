@@ -1,5 +1,5 @@
 from loguru import logger
-from Bardak.configs.logger_config import logger as configured_logger
+
 
 def test_logging() -> None:
     """

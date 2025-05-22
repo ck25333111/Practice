@@ -1,8 +1,9 @@
 # ────────────────────────────────────────────────────────────────
 # Загрузка и запуск приложения, вызов bootstrap, инициализация
 # ────────────────────────────────────────────────────────────────
+from Bardak.configs.config import check_env_paths
+from Bardak.configs.logger_configs.logger_settings import logger
 from Bardak.app.init_db import initialize
-from Bardak.configs.logger_config import logger
 
 
 def bootstrap() -> None:
@@ -13,8 +14,10 @@ def bootstrap() -> None:
     - И другие будущие штуки.
     """
     try:
+        check_env_paths()
+
         initialize()
         logger.info("Инициализация завершена успешно.")
     except Exception as e:
-        logger.exception(f"Ошибка во время инициализации: {e}")
+        logger.error(f"Ошибка во время инициализации: {e}")
         raise

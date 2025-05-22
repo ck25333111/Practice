@@ -2,17 +2,15 @@
 # Общая база для моделей базы данных (например, базовый класс ORM)
 # ────────────────────────────────────────────────────────────────
 
+from Bardak.configs.config import Config
 import os
 from peewee import Model, CharField, SqliteDatabase
 from typing import Optional
 
-# Абсолютный путь к базе — относительно корня проекта
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'database'))
-os.makedirs(BASE_DIR, exist_ok=True)
+os.makedirs(Config.ROOT_DIR, exist_ok=True)
 
 # Создаём соединение с SQLite базой
-DB_PATH = os.path.join(BASE_DIR, 'storage.db')
-db = SqliteDatabase(DB_PATH)
+db = SqliteDatabase(Config.DB_PATH)
 
 
 class BaseModel(Model):
