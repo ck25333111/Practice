@@ -30,9 +30,9 @@ def parse_log_message(message: Message) -> Dict[str, Optional[Any]]:
     module_name = os.path.splitext(os.path.basename(file_path))[0] if file_path else None
 
     # Exception - если есть, берем стек + сообщение
-    exception_str: Optional[str] = None
+    stack_trace: Optional[str] = None
     if record.get('exception'):
-        exception_str = str(record['exception'])
+        stack_trace = str(record['exception'])
 
     parsed = {
         # "time": log_time,
@@ -41,7 +41,7 @@ def parse_log_message(message: Message) -> Dict[str, Optional[Any]]:
         # "file": file_path,
         # "line": line_no,
         # "function": func_name,
-        "stack_trace": exception_str,
+        "stack_trace": stack_trace,
         "module": module_name
     }
     print("📦 Парсер вернул лог:", parsed)  # 👈 Выводим в консоль, что именно парсится
@@ -54,6 +54,6 @@ def parse_log_message(message: Message) -> Dict[str, Optional[Any]]:
         "file": file_path,
         "line": line_no,
         "function": func_name,
-        "exception": exception_str,
+        "stack_trace": stack_trace,
         "module": module_name,
     }

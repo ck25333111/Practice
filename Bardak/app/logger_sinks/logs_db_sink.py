@@ -29,7 +29,7 @@ def logs_db_sink(message: Message) -> None:
             file_path=log_data["file"],
             line=log_data["line"],
             function=log_data["function"],
-            stack_trace=log_data["exception"],
+            stack_trace=log_data["stack_trace"],
             module=log_data['module']
         )
         logger.info('Запись логов в db прошла успешно')
