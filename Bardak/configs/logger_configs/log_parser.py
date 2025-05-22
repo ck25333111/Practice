@@ -34,17 +34,17 @@ def parse_log_message(message: Message) -> Dict[str, Optional[Any]]:
     if record.get('exception'):
         stack_trace = str(record['exception'])
 
-    parsed = {
-        # "time": log_time,
-        # "level": level,
-        # "message": log_message,
-        # "file": file_path,
-        # "line": line_no,
-        # "function": func_name,
-        "stack_trace": stack_trace,
-        "module": module_name
-    }
-    print("📦 Парсер вернул лог:", parsed)  # 👈 Выводим в консоль, что именно парсится
+    # parsed = {
+    #     "time": log_time,
+    #     "level": level,
+    #     "message": log_message,
+    #     "file": file_path,
+    #     "line": line_no,
+    #     "function": func_name,
+    #     "stack_trace": stack_trace,
+    #     "module": module_name
+    # }
+    # print("📦 Парсер вернул лог:", parsed)  # 👈 Выводим в консоль, что именно парсится
 
 
     return {
