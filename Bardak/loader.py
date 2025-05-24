@@ -1,10 +1,9 @@
 # ────────────────────────────────────────────────────────────────
-# Загрузка и запуск приложения, вызов bootstrap, инициализация
+#  Bardak.loader.py Загрузка и запуск приложения, вызов bootstrap, инициализация
 # ────────────────────────────────────────────────────────────────
 from Bardak.configs.config import check_env_paths
 from Bardak.configs.logger_configs.logger_settings import logger
 from Bardak.app.init_db import initialize
-
 
 def bootstrap() -> None:
     """

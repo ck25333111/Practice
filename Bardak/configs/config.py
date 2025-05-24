@@ -12,8 +12,8 @@ def check_env_paths() -> None:
     """Проверяет наличие всех критичных переменных в .env и корректность путей."""
     missing = []
 
-    if not os.getenv("ROOT_DIR"):
-        missing.append("ROOT_DIR")
+    # if not os.getenv("ROOT_DIR"):
+    #     missing.append("ROOT_DIR")
     if not os.getenv("DB_PATH"):
         missing.append("DB_PATH")
     if not os.getenv("LOG_DIR"):
