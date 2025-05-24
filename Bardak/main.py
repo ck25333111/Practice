@@ -12,7 +12,6 @@ def test_error() -> None:
         logger.opt(exception=True).error(f"Ошибка {e}")
 
 
-
 if __name__ == '__main__':
     try:
         bootstrap()

@@ -7,6 +7,7 @@ from Bardak.models.models_base import BaseModel
 from datetime import datetime
 
 class Logs(BaseModel):
+
     """
     Модель для хранения логов в базе данных.
 
@@ -23,4 +24,5 @@ class Logs(BaseModel):
     function: str = CharField(null=True)    # Имя функции
     line: int = IntegerField(null=True)     # Номер строки
     file_path: str = TextField(null=True)   # Путь до файла
+    time: datetime = DateTimeField(null=True)
 
