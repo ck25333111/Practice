@@ -18,7 +18,7 @@ class Cell(BaseModel):
     section = ForeignKeyField(Section, backref='cells', on_delete='CASCADE')  # Ссылка на родительский отсек
     row: int = IntegerField()   # Номер строки (позиция ячейки внутри сетки)
     column: int = IntegerField()    # Номер столбца (позиция ячейки внутри сетки)
-    label: str = CharField(max_length=100, null=True)    # Назначение/подпись
+    label: str = CharField(max_length=100)    # Назначение/подпись
     categories = ext.JSONField(default=list)(default=list)    # Категории (может быть несколько)
     description = TextField(null=True)      # Описание содержимого
 
