@@ -1,14 +1,60 @@
-#:kivy 2.3.0
+<Image>:  # Класс Image — дефолтный виджет для отображения картинки
+    allow_stretch: True  # Разрешить растягивать картинку под размер контейнера
+    keep_ratio: True     # Сохранять пропорции картинки, чтобы не было искажений
 
-<HomeDashboard>:
-    orientation: 'vertical'
-    spacing: dp(10)
-    padding: dp(10)
+<TopBar>:  # Главный контейнер верхнего бара — BoxLayout с горизонтальной ориентацией
+    size_hint_y: None  # Фиксированная высота, чтобы не растягивался по вертикали
+    height: dp(50)     # Высота 50 dp — стандартный размер для тулбара
+    padding: dp(10), dp(5)  # Внутренние отступы: слева/справа 10dp, сверху/снизу 5dp
+    spacing: dp(10)    # Расстояние между дочерними виджетами — 10dp
+    orientation: 'horizontal'  # Располагаем элементы слева направо
+    canvas.before:     # Рисуем фон для TopBar
+        Color:
+            rgba: 168/255, 255/255, 180/255, 0.59  # Полупрозрачный светло-зеленый цвет
+        Rectangle:
+            pos: self.pos  # Позиция прямоугольника — совпадает с позицией TopBar
+            size: self.size  # Размер прямоугольника — совпадает с размером TopBar
 
-    TopBar:
-        id: top_bar
+    Image:  # Виджет для отображения логотипа
+        source: "ui/assets/logo.png"  # Путь к картинке (от корня запуска)
+        size_hint_x: 0.05  # Занимает 5% ширины контейнера (узкий логотип)
+        allow_stretch: True  # Позволяет растянуть изображение, если нужно
+        keep_ratio: True     # Сохраняет пропорции изображения
+        canvas.after:  # Рисуем красную рамку вокруг картинки для отладки
+            Color:
+                rgba: 1, 0, 0, 1  # Красный цвет, полностью непрозрачный
+            Line:
+                rectangle: (self.x, self.y, self.width, self.height)  # Рамка по размерам Image
+                width: 1.2  # Толщина линии рамки
 
-    Label:
-        text: "Bardak HomeDashboard !"
-        font_size: '20sp'
-        color: 1, 1, 1, 1
+    BoxLayout:  # Вертикальный контейнер для текста с названием
+        size_hint_x: 0.4  # Занимает 40% ширины TopBar
+        orientation: 'vertical'  # Размещаем элементы вертикально (хоть тут 1 лейбл)
+        padding: 0  # Без внутренних отступов
+        spacing: 0  # Без отступов между элементами
+
+        Label:  # Текст "BardaK" в центре блока
+            text: "BardaK"  # Текст лейбла
+            font_size: '16sp'  # Размер шрифта 16 sp (масштабируемый)
+            color: 1, 1, 1, 0.8  # Цвет текста — почти белый с прозрачностью 0.8
+            halign: 'center'  # Выравнивание текста по горизонтали — по центру
+            valign: 'middle'  # Выравнивание текста по вертикали — по центру
+            text_size: self.size  # Размер области для текста равен размеру Label (чтобы halign сработал)
+            shorten: False  # Не сокращать текст многоточием
+            canvas.after:  # Рисуем красную рамку вокруг лейбла для отладки
+                Color:
+                    rgba: 1, 0, 0, 1  # Красный цвет для рамки
+                Line:
+                    rectangle: (self.x, self.y, self.width, self.height)  # Рамка по размерам Label
+                    width: 1.2  # Толщина линии рамки
+
+    Button:  # Кнопка "Профиль" справа
+        text: "Профиль"  # Текст на кнопке
+        size_hint_x: 0.2  # Занимает 20% ширины TopBar
+        on_release: root.on_profile_pressed()  # Обработчик нажатия — вызывает метод из Python класса TopBar
+        canvas.after:  # Рисуем красную рамку вокруг кнопки для отладки
+            Color:
+                rgba: 1, 0, 0, 1  # Красный цвет рамки
+            Line:
+                rectangle: (self.x, self.y, self.width, self.height)  # Рамка по размерам кнопки
+                width: 1.2  # Толщина линии рамки

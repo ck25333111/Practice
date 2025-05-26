@@ -14,7 +14,6 @@ from Bardak.configs.config_raw import KV_DIR  # путь до kv-шек
 Builder.load_file(os.path.join(KV_DIR, "top_bar.kv"))
 
 
-
 class TopBar(BoxLayout):
     """Верхняя панель с логотипом, приветствием и кнопкой профиля."""
 
