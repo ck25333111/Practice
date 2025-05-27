@@ -1,0 +1,23 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/widgets/footer_bar/footer_bar.kv
+# Нижняя панель с версией приложения и статусом
+# ────────────────────────────────────────────────────────────────
+
+<FooterBar>:
+    size_hint_y: 0.1
+    padding: dp(10), dp(5)
+    spacing: dp(10)
+    canvas.before:
+        Color:
+            rgba: 56/255, 203/255, 177/255, 0.8  # Прозрачность нормальная
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: root.version
+        color: 0.8, 0.8, 0.8, 0.1
+        font_size: '14sp'
+        halign: 'left'
+        valign: 'middle'
+        text_size: self.size

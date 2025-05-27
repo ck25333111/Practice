@@ -1,0 +1,17 @@
+# ──────────────────────────────────────────────
+# Bardak/ui/widgets/content_area/left_menu.kv
+# Боковое меню с кнопками слева
+# ──────────────────────────────────────────────
+
+<LeftMenu>:
+    orientation: 'vertical'
+    padding: dp(10)
+    spacing: dp(10)
+
+
+    Button:
+        text: "Настройки"
+        size_hint_y: None
+        height: dp(40)
+        on_release:
+            print("Настройки")
