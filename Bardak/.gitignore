@@ -43,4 +43,4 @@ poetry.lock
 .env.*
 
 # 💀 Структурный скрипт
-strukture.py
+tools/strukture.py

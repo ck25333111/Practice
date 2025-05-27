@@ -1,0 +1,31 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/widgets/top_bar/top_bar.kv
+# Верхняя панель приложения с названием и кнопкой профиля
+# ────────────────────────────────────────────────────────────────
+
+<TopBar>:
+    size_hint_y: 0.1
+    padding: dp(10), dp(5)
+    spacing: dp(10)
+    canvas.before:
+        Color:
+            rgba: 56/255, 203/255, 177/255, 0.8  # Прозрачность нормальная
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: root.title
+        bold: True
+        color: 1, 1, 1, 1
+        font_size: '22sp'
+        size_hint_x: 0.9
+        valign: 'middle'
+        halign: 'left'
+        text_size: self.size
+
+    Button:
+        text: "Профиль"
+        size_hint_x: 0.1
+        on_release:
+            print("Профиль наебнулся, надо потом сделать нормальную функцию")

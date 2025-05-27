@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Bardak/configs
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, ".."))  # Bardak
 
+
 # Загружаем .env из PROJECT_ROOT, если он есть
 dotenv_path = os.path.join(PROJECT_ROOT, ".env")
 if os.path.exists(dotenv_path):
@@ -37,6 +38,8 @@ def make_abs_path(env_var: str, default_relative_path: str) -> str:
 ROOT_DIR = PROJECT_ROOT
 DB_PATH = make_abs_path("DB_PATH", "database/storage.db")
 LOG_DIR = make_abs_path("LOG_DIR", "logs")
+ASSETS_DIR = make_abs_path("ASSETS_DIR", "assets")
+KV_DIR = make_abs_path("KV_DIR", "ui/kv")
 
 # --- Дополнительно можно сделать проверку на существование папок и базы
 
