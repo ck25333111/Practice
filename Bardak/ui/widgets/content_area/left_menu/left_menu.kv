@@ -8,6 +8,12 @@
     padding: dp(10)
     spacing: dp(10)
 
+    Button:
+        text: "Найти предмет"
+        size_hint_y: None
+        height: dp(40)
+        on_release:
+            app.root.ids.content_area.ids.screen_manager.current = "search_screen"
 
     Button:
         text: "Настройки"
@@ -15,3 +21,4 @@
         height: dp(40)
         on_release:
             print("Настройки")
+
