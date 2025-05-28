@@ -1,0 +1,34 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/widgets/content_area/content_area/screens/search_screen.kv
+# UI экран для поиска предметов
+# ────────────────────────────────────────────────────────────────
+
+<SearchScreen>:
+    name: "search_screen"  # Это имя используешь при переключении экранов
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(10)
+
+        Label:
+            text: "Поиск предмета"
+            font_size: dp(24)
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        TextInput:
+            id: search_input
+            hint_text: "Введите ключевое слово..."
+            multiline: False
+            size_hint_y: None
+            height: dp(40)
+
+        Button:
+            text: "Найти"
+            size_hint_y: None
+            height: dp(40)
+            on_release:
+                print("Поиск: " + search_input.text)
+
+        Label:
+            text: "Тут потом будет список результатов"
