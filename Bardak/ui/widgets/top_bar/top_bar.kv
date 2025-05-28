@@ -9,21 +9,30 @@
     spacing: dp(10)
     canvas.before:
         Color:
-            rgba: 56/255, 203/255, 177/255, 0.8  # Прозрачность нормальная
+            rgba: app.hex("#000000", 0.9)
         Rectangle:
             pos: self.pos
             size: self.size
+#    canvas.before:
+#        Color:
+#           rgba: app.hex("#ffffff", 1)
+#        Line:
+ #           rectangle: self.x, self.y, self.width, self.height
+  #          width: 1
 
+# ──────────────────Заголовок────────────────────────────────
     Label:
-        text: root.title
+        text: "держи Bardak под контролем"
         bold: True
-        color: 1, 1, 1, 1
-        font_size: '22sp'
-        size_hint_x: 0.9
+        color: app.hex("#ffffff", 0.9)
+        font_size: '20sp'
+        size_hint_x: 0.5
         valign: 'middle'
-        halign: 'left'
+        halign: 'center'
         text_size: self.size
 
+
+# ───────────────────Кнопка "Профиль"───────────────────────────────
     Button:
         text: "Профиль"
         size_hint_x: 0.1

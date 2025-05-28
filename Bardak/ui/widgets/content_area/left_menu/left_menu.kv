@@ -3,22 +3,40 @@
 # Боковое меню с кнопками слева
 # ──────────────────────────────────────────────
 
+
+<LeftMenuButton@Button>:  #  шаблон кнопки
+    size_hint_y: None
+    height: dp(60)
+    font_size: '18sp'
+    background_color: app.hex("#000000", 0)
+    color: app.hex("#ffffff", 1)
+    background_normal: ''
+    background_down: ''
+
+    canvas.before:
+        Color:
+            rgba: app.hex("#fffb00", 1)  # белая рамка
+        Line:
+            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(10))
+            width: 1
+# ──────────────────────────────────────────────
 <LeftMenu>:
     orientation: 'vertical'
-    padding: dp(10)
-    spacing: dp(10)
+    padding: dp(20)
+    spacing: dp(20)
 
-    Button:
-        text: "Найти предмет"
-        size_hint_y: None
-        height: dp(40)
+    LeftMenuButton:
+        text: "Главная"
         on_release:
-            app.root.ids.content_area.ids.screen_manager.current = "search_screen"
+            app.root.ids.content_area.switch_to("home_screen")
 
-    Button:
+    LeftMenuButton:
+        text: "Найти предмет"
+        on_release:
+            app.root.ids.content_area.switch_to("search_screen")
+
+    LeftMenuButton:
         text: "Настройки"
-        size_hint_y: None
-        height: dp(40)
         on_release:
             print("Настройки")
 
