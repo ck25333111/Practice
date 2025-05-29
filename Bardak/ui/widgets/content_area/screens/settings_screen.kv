@@ -1,0 +1,20 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/widgets/content_area/screens/settings_screen.py
+# Экран Найстроки
+# ────────────────────────────────────────────────────────────────
+
+<SettingsScreen>:
+    name: "settings_screen"
+
+    FloatLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(10)
+
+        Label:
+            text: "Экран Найстроки"
+            font_size: '28sp'
+            color: 1, 1, 1, 1  # белый текст
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {"center_x": 0.5, "center_y": 0.6}  # чуть выше центра

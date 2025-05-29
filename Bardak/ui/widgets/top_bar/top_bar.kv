@@ -33,8 +33,29 @@
 
 
 # ───────────────────Кнопка "Профиль"───────────────────────────────
-    Button:
-        text: "Профиль"
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: 1
         size_hint_x: 0.1
-        on_release:
-            print("Профиль наебнулся, надо потом сделать нормальную функцию")
+
+        Widget:  # Пустышка сверху
+
+        Button:
+            text: "Профиль"
+            size_hint_y: None
+            height: dp(30)
+            font_size: '18sp'
+            background_color: app.hex("#000000", 0)
+            color: app.hex("#ffffff", 1)
+            background_normal: ''
+            background_down: ''
+            canvas.before:
+                Color:
+                    rgba: app.hex("#fffb00", 1.2)  # Желтая рамка
+                Line:
+                    rounded_rectangle: (self.x, self.y, self.width, self.height, dp(5))
+                    width: 1
+            on_release:
+                app.root.ids.content_area.switch_to("profile_screen")
+
+        Widget:  # Пустышка сверху

@@ -15,7 +15,7 @@
 
     canvas.before:
         Color:
-            rgba: app.hex("#fffb00", 1)  # белая рамка
+            rgba: app.hex("#fffb00", 1.2)  # Желтая рамка
         Line:
             rounded_rectangle: (self.x, self.y, self.width, self.height, dp(10))
             width: 1
@@ -31,12 +31,22 @@
             app.root.ids.content_area.switch_to("home_screen")
 
     LeftMenuButton:
+        text: "Добавить предмет"
+        on_release:
+            app.root.ids.content_area.switch_to("add_item_screen")
+
+    LeftMenuButton:
         text: "Найти предмет"
         on_release:
             app.root.ids.content_area.switch_to("search_screen")
 
     LeftMenuButton:
+        text: "Мои хранилища"
+        on_release:
+            app.root.ids.content_area.switch_to("storages_screen")
+
+    LeftMenuButton:
         text: "Настройки"
         on_release:
-            print("Настройки")
+            app.root.ids.content_area.switch_to("settings_screen")
 

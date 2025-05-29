@@ -12,22 +12,10 @@
             orientation: 'vertical'
             size_hint_x: 0.3
 
-            canvas.before:
-                Color:
-                    rgba: app.hex("#000000", 0.5)  # фон
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-                Color:
-                    rgba: app.hex("#ffffff", 1)  # рамка
-                Line:
-                    rectangle: self.x, self.y, self.width, self.height
-                    width: 0.1
-
             AnchorLayout:  # ← Контейнер, прижимающий контент вверх
                 anchor_y: 'top'
 
-                LeftMenu:  # ← Вот он, твой славный список кнопочек
+                LeftMenu:  # список кнопок
                     id: left_menu
                     size_hint_y: None
                     height: self.minimum_height
@@ -43,6 +31,18 @@
                 HomeScreen:
                     name: "home_screen"
 
+                AddItemScreen:
+                    name: "add_item_screen"
+
                 SearchScreen:
                     name: "search_screen"
+
+                StoragesScreen:
+                    name: "storages_screen"
+
+                SettingsScreen:
+                    name: "settings_screen"
+
+                ProfileScreen:
+                    name: "profile_screen"
 
