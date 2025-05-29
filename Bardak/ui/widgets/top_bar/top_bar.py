@@ -13,7 +13,7 @@ Builder.load_file(os.path.join(os.path.dirname(__file__), "top_bar.kv"))
 
 class TopBar(BoxLayout):
     """Верхняя панель с заголовком и кнопкой"""
-    title: StringProperty = StringProperty("Bardak — держи бардак под контролем")
+    # title: StringProperty = StringProperty("держи Bardak под контролем")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

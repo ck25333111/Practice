@@ -1,0 +1,30 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/widgets/content_area/content_area/screens/home_screen.kv
+# Домашний экран
+# ────────────────────────────────────────────────────────────────
+
+<HomeScreen>:
+    name: "home_screen"
+
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                source: "ui/assets/homescreen.png"  # путь к твоему фоновому изображению
+                pos: self.pos
+                size: self.size
+
+    Label:
+        text: "Добро пожаловать в Бардак!"
+        font_size: '28sp'
+        color: 1, 1, 1, 1  # белый текст
+        size_hint: None, None
+        size: self.texture_size
+        pos_hint: {"center_x": 0.5, "center_y": 0.6}  # чуть выше центра
+
+    Label:
+        text: "Сделано с болью ♥"
+        font_size: '14sp'
+        color: 0.9, 0.9, 0.9, 0.7
+        size_hint: None, None
+        size: self.texture_size
+        pos_hint: {"right": 0.98, "y": 0.02}  # правый нижний угол
