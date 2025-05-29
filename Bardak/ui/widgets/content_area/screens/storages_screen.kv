@@ -1,20 +1,119 @@
 # ────────────────────────────────────────────────────────────────
 # Bardak/ui/widgets/content_area/content_area/screens/storages_screen.kv
-# Экран "Мои Хранилища"
+# Пошаговая форма добавления места хранения с боксами, секциями и ячейками
 # ────────────────────────────────────────────────────────────────
-
 
 <StoragesScreen>:
     name: "storages_screen"
-    FloatLayout:
+
+    BoxLayout:
         orientation: "vertical"
         padding: dp(20)
-        spacing: dp(10)
+        spacing: dp(15)
 
-        Label:
-            text: "Экран Мои Хранилища"
-            font_size: '28sp'
-            color: 1, 1, 1, 1  # белый текст
-            size_hint: None, None
-            size: self.texture_size
-            pos_hint: {"center_x": 0.5, "center_y": 0.6}  # чуть выше центра
+        # Шаг 1: Название и описание места хранения
+        BoxLayout:
+            size_hint_y: None
+            height: dp(48)
+            spacing: dp(10)
+            opacity: 1 if root.step == 1 else 0
+            disabled: root.step != 1
+
+            TextInput:
+                id: storage_name
+                hint_text: "Название места хранения"
+                multiline: False
+                size_hint_x: .4
+            TextInput:
+                id: storage_description
+                hint_text: "Описание (необязательно)"
+                multiline: False
+                size_hint_x: .4
+            Button:
+                text: "Далее"
+                size_hint_x: .2
+                on_press: root.next_step_storage(storage_name.text, storage_description.text)
+
+        # Шаг 2: Название бокса
+        BoxLayout:
+            size_hint_y: None
+            height: dp(48)
+            spacing: dp(10)
+            opacity: 1 if root.step == 2 else 0
+            disabled: root.step != 2
+
+            TextInput:
+                id: box_name
+                hint_text: "Название бокса"
+                multiline: False
+                size_hint_x: .8
+            Button:
+                text: "Далее"
+                size_hint_x: .2
+                on_press: root.next_step_box(box_name.text)
+
+        # Шаг 3: Количество секций
+        BoxLayout:
+            size_hint_y: None
+            height: dp(48)
+            spacing: dp(10)
+            opacity: 1 if root.step == 3 else 0
+            disabled: root.step != 3
+
+            TextInput:
+                id: sections_count
+                hint_text: "Количество секций"
+                input_filter: 'int'
+                multiline: False
+                size_hint_x: .8
+            Button:
+                text: "Далее"
+                size_hint_x: .2
+                on_press: root.next_step_sections_count(sections_count.text)
+
+        # Шаг 4: Ввод названий секций (динамически добавляется)
+        BoxLayout:
+            id: sections_box
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: dp(10)
+            opacity: 1 if root.step == 4 else 0
+            disabled: root.step != 4
+
+        # Шаг 5: Размеры сетки ячеек
+        BoxLayout:
+            size_hint_y: None
+            height: dp(48)
+            spacing: dp(10)
+            opacity: 1 if root.step == 5 else 0
+            disabled: root.step != 5
+
+            TextInput:
+                id: cells_rows
+                hint_text: "Количество строк"
+                input_filter: 'int'
+                multiline: False
+                size_hint_x: .4
+            TextInput:
+                id: cells_columns
+                hint_text: "Количество столбцов"
+                input_filter: 'int'
+                multiline: False
+                size_hint_x: .4
+            Button:
+                text: "Далее"
+                size_hint_x: .2
+                on_press: root.next_step_cells(cells_rows.text, cells_columns.text)
+
+        # Шаг 6: Подтверждение и завершение
+        BoxLayout:
+            size_hint_y: None
+            height: dp(48)
+            spacing: dp(10)
+            opacity: 1 if root.step == 6 else 0
+            disabled: root.step != 6
+
+            Button:
+                text: "Готово"
+                on_press: root.submit_all()
