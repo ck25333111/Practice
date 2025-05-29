@@ -13,4 +13,4 @@ def hex_to_rgba_string(hex_color: str, alpha: float = 1.0) -> str:
     return f"rgba: {r / 255:.1f}, {g / 255:.1f}, {b / 255:.1f}, {alpha:.1f}"
 
 
-print(hex_to_rgba_string("#bfff90", 0.2))
+print(hex_to_rgba_string("#bfff90", 1))
