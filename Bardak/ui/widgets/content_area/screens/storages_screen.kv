@@ -3,117 +3,64 @@
 # Пошаговая форма добавления места хранения с боксами, секциями и ячейками
 # ────────────────────────────────────────────────────────────────
 
+
 <StoragesScreen>:
-    name: "storages_screen"
-
-    BoxLayout:
-        orientation: "vertical"
-        padding: dp(20)
-        spacing: dp(15)
-
-        # Шаг 1: Название и описание места хранения
+    ScreenContainer:
         BoxLayout:
-            size_hint_y: None
-            height: dp(48)
-            spacing: dp(10)
-            opacity: 1 if root.step == 1 else 0
-            disabled: root.step != 1
+            orientation: "vertical"
+            padding: 20
+            spacing: 10
 
-            TextInput:
-                id: storage_name
-                hint_text: "Название места хранения"
-                multiline: False
-                size_hint_x: .4
-            TextInput:
-                id: storage_description
-                hint_text: "Описание (необязательно)"
-                multiline: False
-                size_hint_x: .4
-            Button:
-                text: "Далее"
-                size_hint_x: .2
-                on_press: root.next_step_storage(storage_name.text, storage_description.text)
+            Widget:
 
-        # Шаг 2: Название бокса
-        BoxLayout:
-            size_hint_y: None
-            height: dp(48)
-            spacing: dp(10)
-            opacity: 1 if root.step == 2 else 0
-            disabled: root.step != 2
+            BoxLabelInput:
+                label_text: "Место хранения"
+                hint_text: "Пример: Комната, Зал, Балкон"
 
-            TextInput:
-                id: box_name
-                hint_text: "Название бокса"
-                multiline: False
-                size_hint_x: .8
-            Button:
-                text: "Далее"
-                size_hint_x: .2
-                on_press: root.next_step_box(box_name.text)
+            BoxLabelInput:
+                label_text: "Название бокса"
+                hint_text: "Пример: Шкаф, Стол, Камод"
 
-        # Шаг 3: Количество секций
-        BoxLayout:
-            size_hint_y: None
-            height: dp(48)
-            spacing: dp(10)
-            opacity: 1 if root.step == 3 else 0
-            disabled: root.step != 3
+            BoxLabelInput:
+                label_text: "Название секции"
+                hint_text: "Пример: Ящик, Полка, Отсек"
 
-            TextInput:
-                id: sections_count
-                hint_text: "Количество секций"
-                input_filter: 'int'
-                multiline: False
-                size_hint_x: .8
-            Button:
-                text: "Далее"
-                size_hint_x: .2
-                on_press: root.next_step_sections_count(sections_count.text)
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: 10
+                size_hint_y: None
+                size_hint_x: 0.9
+                height: "50dp"
 
-        # Шаг 4: Ввод названий секций (динамически добавляется)
-        BoxLayout:
-            id: sections_box
-            orientation: 'vertical'
-            size_hint_y: None
-            height: self.minimum_height
-            spacing: dp(10)
-            opacity: 1 if root.step == 4 else 0
-            disabled: root.step != 4
+                Label:
+                    text: "Расположение секций:"
+                    size_hint_x: 0.4
+                    color: app.hex("#fffb00", 1)
+                    bold: True
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
 
-        # Шаг 5: Размеры сетки ячеек
-        BoxLayout:
-            size_hint_y: None
-            height: dp(48)
-            spacing: dp(10)
-            opacity: 1 if root.step == 5 else 0
-            disabled: root.step != 5
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    size_hint_x: 0.6
+                    height: "50dp"
 
-            TextInput:
-                id: cells_rows
-                hint_text: "Количество строк"
-                input_filter: 'int'
-                multiline: False
-                size_hint_x: .4
-            TextInput:
-                id: cells_columns
-                hint_text: "Количество столбцов"
-                input_filter: 'int'
-                multiline: False
-                size_hint_x: .4
-            Button:
-                text: "Далее"
-                size_hint_x: .2
-                on_press: root.next_step_cells(cells_rows.text, cells_columns.text)
+                    StyledTextInput:
+                        hint_text: ""
+                        size_hint_x: 0.25
 
-        # Шаг 6: Подтверждение и завершение
-        BoxLayout:
-            size_hint_y: None
-            height: dp(48)
-            spacing: dp(10)
-            opacity: 1 if root.step == 6 else 0
-            disabled: root.step != 6
+                    Label:
+                        text: "x"
+                        size_hint_x: 0.1
+                        color: app.hex("#fffb00", 1)
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+                        font_size: "22sp"
 
-            Button:
-                text: "Готово"
-                on_press: root.submit_all()
+                    StyledTextInput:
+                        hint_text: ""
+                        size_hint_x: 0.25
+            Widget:
