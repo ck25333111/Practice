@@ -19,7 +19,7 @@ class Cell(BaseModel):
     row: int = IntegerField()   # Номер строки (позиция ячейки внутри сетки)
     column: int = IntegerField()    # Номер столбца (позиция ячейки внутри сетки)
     label: str = CharField(max_length=100)    # Назначение/подпись
-    categories = ext.JSONField(default=list)(default=list)    # Категории (может быть несколько)
+    categories = ext.JSONField(default=list)    # Категории (может быть несколько)
     description = TextField(null=True)      # Описание содержимого
 
     # Размеры ячейки (мм или см — определим потом)

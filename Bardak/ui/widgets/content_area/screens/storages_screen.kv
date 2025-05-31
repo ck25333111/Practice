@@ -1,20 +1,66 @@
 # ────────────────────────────────────────────────────────────────
 # Bardak/ui/widgets/content_area/content_area/screens/storages_screen.kv
-# Экран "Мои Хранилища"
+# Пошаговая форма добавления места хранения с боксами, секциями и ячейками
 # ────────────────────────────────────────────────────────────────
 
 
 <StoragesScreen>:
-    name: "storages_screen"
-    FloatLayout:
-        orientation: "vertical"
-        padding: dp(20)
-        spacing: dp(10)
+    ScreenContainer:
+        BoxLayout:
+            orientation: "vertical"
+            padding: 20
+            spacing: 10
 
-        Label:
-            text: "Экран Мои Хранилища"
-            font_size: '28sp'
-            color: 1, 1, 1, 1  # белый текст
-            size_hint: None, None
-            size: self.texture_size
-            pos_hint: {"center_x": 0.5, "center_y": 0.6}  # чуть выше центра
+            Widget:
+
+            BoxLabelInput:
+                label_text: "Место хранения"
+                hint_text: "Пример: Комната, Зал, Балкон"
+
+            BoxLabelInput:
+                label_text: "Название бокса"
+                hint_text: "Пример: Шкаф, Стол, Камод"
+
+            BoxLabelInput:
+                label_text: "Название секции"
+                hint_text: "Пример: Ящик, Полка, Отсек"
+
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: 10
+                size_hint_y: None
+                size_hint_x: 0.9
+                height: "50dp"
+
+                Label:
+                    text: "Расположение секций:"
+                    size_hint_x: 0.4
+                    color: app.hex("#fffb00", 1)
+                    bold: True
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    size_hint_x: 0.6
+                    height: "50dp"
+
+                    StyledTextInput:
+                        hint_text: ""
+                        size_hint_x: 0.25
+
+                    Label:
+                        text: "x"
+                        size_hint_x: 0.1
+                        color: app.hex("#fffb00", 1)
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.size
+                        font_size: "22sp"
+
+                    StyledTextInput:
+                        hint_text: ""
+                        size_hint_x: 0.25
+            Widget:

@@ -3,6 +3,12 @@
 # ────────────────────────────────────────────────────────────────
 from Bardak.models.models_base import Furniture, db
 from Bardak.models.logger_model import Logs
+
+from Bardak.models.storage.storage_place import StoragePlace
+from Bardak.models.storage.box import Box
+from Bardak.models.storage.section import Section
+from Bardak.models.storage.cell import Cell
+
 from loguru import logger
 
 def initialize() -> None:
@@ -19,14 +25,14 @@ def initialize() -> None:
     if db.is_closed():
         db.connect()
     try:
-        # Создаём таблицы, если ещё не созданы
-        db.create_tables([Furniture,
-                          Logs
-                          ], safe=True)
-
-        # Добавляем записи мебели, если они ещё не существуют
-        Furniture.get_or_create(name='Стол')
-        Furniture.get_or_create(name='Шкаф')
+        # Создаём таблицы всех нужных моделей
+        db.create_tables([
+            StoragePlace,
+            Box,
+            Section,
+            Cell,
+            Logs,
+        ], safe=True)
 
     except Exception as e:
         logger.error(f"Инициализация БД упала с ошибкой: {e}")

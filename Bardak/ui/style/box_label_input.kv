@@ -1,0 +1,81 @@
+# ────────────────────────────────────────────────────────────────
+# Файл: ui/style/box_label_input.kv
+# Назначение: Стили и шаблон для компонента BoxLabelInput и отдельного StyledTextInput
+# ────────────────────────────────────────────────────────────────
+
+# ────────────────────────────────────────────────────────────────
+# Компонент: StyledTextInput
+# Назначение: Универсальное стилизованное поле ввода с жёлтой рамкой
+# ────────────────────────────────────────────────────────────────
+<StyledTextInput@TextInput>:
+    background_normal: ""
+    background_active: ""
+    background_color: app.hex("#000000", 0)
+    foreground_color: 1, 1, 1, 1
+    multiline: False
+    padding: [10, 10, 10, 10]
+    size_hint_y: None
+    height: "40dp"
+    halign: "center"
+
+    canvas.before:
+        Color:
+            rgba: app.hex("#fffb00", 1)
+        Line:
+            width: 0.5
+            rounded_rectangle: (self.x, self.y, self.width, self.height, 5)
+
+# ────────────────────────────────────────────────────────────────
+# Компонент: BoxLabelInput
+# Назначение: Горизонтальный лэйбл + поле ввода с кастомным hint'ом
+# ────────────────────────────────────────────────────────────────
+<BoxLabelInput>:
+    orientation: "horizontal"
+    size_hint_y: None
+    size_hint_x: 0.9
+    height: "50dp"
+    spacing: 10
+
+    Label:
+        text: root.label_text if hasattr(root, 'label_text') else "Нет текста"
+        size_hint_x: 0.4
+        halign: "center"
+        valign: "middle"
+        text_size: self.size
+        color: app.hex("#fffb00", 1)
+        bold: True
+
+    RelativeLayout:
+        size_hint_x: root.input_width if hasattr(root, 'input_width') else 0.6  # ← ← ← Вот тут магия!
+        size_hint_y: None
+        height: "40dp"
+
+        TextInput:
+            id: input_field
+            text: ""
+            multiline: False
+            background_normal: ""
+            background_active: ""
+            background_color: app.hex("#000000", 0)
+            foreground_color: 1, 1, 1, 1
+            padding: [10, 10, 10, 10]
+            size_hint: 1, 1
+            halign: "center"
+
+            canvas.before:
+                Color:
+                    rgba: app.hex("#fffb00", 1)
+                Line:
+                    width: 0.5
+                    rounded_rectangle: (self.x, self.y, self.width, self.height, 5)
+
+        Label:
+            text: root.hint_text if hasattr(root, 'hint_text') else ""
+            color: 1, 1, 1, 0.6
+            pos: input_field.pos
+            size: input_field.size
+            padding: [10, 10]
+            halign: "center"
+            valign: "middle"
+            text_size: self.size
+            opacity: 1 if input_field.text == "" else 0
