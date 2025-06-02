@@ -1,0 +1,50 @@
+# ────────────────────────────────────────────────────────────────
+# Файл: ui/widgets/common/simple_label_inputs.kv
+# Назначение: Заглушка для SimpleLabelInputs, чтобы kv мог его распознать
+# ────────────────────────────────────────────────────────────────
+
+
+<SimpleLabelInputs@BoxLayout>:
+    orientation: 'vertical'
+    size_hint_y: None
+    height: self.minimum_height
+    spacing: dp(5)
+    padding: dp(5), dp(5), dp(5), dp(5)
+
+    label_text: ''          # Свойство, которое задаётся из Python или kv
+    hint_text: ''
+
+
+    Label:
+        text: root.label_text
+        size_hint_y: None
+        height: self.texture_size[1] + dp(10)
+        color: app.colors("WHITE", 1)
+        bold: True
+        halign: 'left'
+        valign: 'middle'
+        text_size: self.width, None
+
+    # Теперь динамически создаём TextInput'ы по списку input_hints (передаем из Python)
+    # Но kv так не умеет, поэтому укажем просто несколько полей вручную или 1 для примера
+
+    # Если хочешь несколько, делай вручную через id, или добавляй из кода
+    TextInput:
+        hint_text: root.hint_text
+        size_hint_y: None
+        size_hint_x: 0.8
+        height: dp(40)
+        multiline: False
+        padding: dp(10), dp(10), dp(10), dp(10)
+        background_normal: ''
+        background_active: ''
+        background_color: app.colors("BLACK_TRANSPARENT", 0)
+        foreground_color: app.colors("WHITE", 1)
+        halign: 'center'
+
+        canvas.before:
+            Color:
+                rgba: app.colors("YELLOW", 1.2)  # Желтая рамка
+            Line:
+                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(10))
+

@@ -1,6 +1,7 @@
 # ────────────────────────────────────────────────────────────────
 # Bardak/ui/widgets/content_area/content_area/screens/storages_screen.py
 # Пошаговая форма добавления места хранения с вложенной логикой
+# Генерация ячеек на экране "Мои Хранилища" по введённым размерам
 # ────────────────────────────────────────────────────────────────
 
 from typing import List, Optional
@@ -19,8 +20,10 @@ from Bardak.models.storage.cell import Cell  # Модель ячейки
 
 from kivy.lang import Builder
 import os
-from Bardak.ui.style.box_label_input import BoxLabelInput
 from Bardak.ui.style.screen_container import ScreenContainer
+from Bardak.ui.widgets.content_area.left_menu.left_menu import LeftMenu
+from Bardak.ui.widgets.common.simple_label_inputs import SimpleLabelInputs
+
 
 Builder.load_file(os.path.join(os.path.dirname(__file__), "storages_screen.kv"))
 

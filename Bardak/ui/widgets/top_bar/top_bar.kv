@@ -9,13 +9,13 @@
     spacing: dp(10)
     canvas.before:
         Color:
-            rgba: app.hex("#000000", 0.9)
+            rgba: app.colors("#000000", 0.9)
         Rectangle:
             pos: self.pos
             size: self.size
 #    canvas.before:
 #        Color:
-#           rgba: app.hex("#ffffff", 1)
+#           rgba: app.colors("#ffffff", 1)
 #        Line:
  #           rectangle: self.x, self.y, self.width, self.height
   #          width: 1
@@ -24,7 +24,7 @@
     Label:
         text: "держи Bardak под контролем"
         bold: True
-        color: app.hex("#ffffff", 0.9)
+        color: app.colors("WHITE", 0.9)
         font_size: '20sp'
         size_hint_x: 0.5
         valign: 'middle'
@@ -45,16 +45,15 @@
             size_hint_y: None
             height: dp(30)
             font_size: '18sp'
-            background_color: app.hex("#000000", 0)
-            color: app.hex("#ffffff", 1)
+            background_color: app.colors("BLACK_TRANSPARENT", 0)
+            color: app.colors("WHITE", 1)
             background_normal: ''
             background_down: ''
             canvas.before:
                 Color:
-                    rgba: app.hex("#fffb00", 1.2)  # Желтая рамка
+                    rgba: app.colors('YELLOW', 1)
                 Line:
                     rounded_rectangle: (self.x, self.y, self.width, self.height, dp(5))
-                    width: 1
             on_release:
                 app.root.ids.content_area.switch_to("profile_screen")
 

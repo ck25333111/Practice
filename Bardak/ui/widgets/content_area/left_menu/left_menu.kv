@@ -8,14 +8,14 @@
     size_hint_y: None
     height: dp(60)
     font_size: '18sp'
-    background_color: app.hex("#000000", 0)
-    color: app.hex("#ffffff", 1)
+    background_color: app.colors("BLACK_TRANSPARENT", 0)
+    color: app.colors("WHITE", 1)
     background_normal: ''
     background_down: ''
 
     canvas.before:
         Color:
-            rgba: app.hex("#fffb00", 1.2)  # Желтая рамка
+            rgba: app.colors("YELLOW", 1.2)  # Желтая рамка
         Line:
             rounded_rectangle: (self.x, self.y, self.width, self.height, dp(10))
             width: 1

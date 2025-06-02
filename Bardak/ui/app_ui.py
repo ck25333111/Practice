@@ -6,10 +6,10 @@
 from kivy.app import App
 import os
 
-from Bardak.ui.utils.color import hex_to_rgba
+
 from Bardak.ui.main_screen import MainScreen
-
-
+from Bardak.ui.utils.colors import get_color
+from Bardak.ui.style.style_loader import load_all_styles
 from Bardak.configs.config_raw import KV_DIR
 
 
@@ -17,14 +17,13 @@ from Bardak.configs.config_raw import KV_DIR
 class BardakApp(App):
     """Главный класс Kivy-приложения Bardak"""
 
-    def hex(self, hex_color: str, alpha: float = 1.0) -> tuple:
-        """Обертка - конвертер HEX-RGBA, чтобы вызвать из kv"""
-        return hex_to_rgba(hex_color, alpha)
-
-
     def build(self) -> MainScreen:
+        self.colors = get_color
+        load_all_styles()
+
         """Создаем и возвращаем главный экран"""
         return MainScreen()
+
 
 if __name__ == '__main__':
     BardakApp().run()

@@ -9,14 +9,14 @@
     spacing: dp(10)
     canvas.before:
         Color:
-            rgba: app.hex("#000000", 0.9)
+            rgba: app.colors("#000000", 0.9)
         Rectangle:
             pos: self.pos
             size: self.size
 
     Label:
         text: root.version
-        color: app.hex("#ffffff", 1)
+        color: app.colors("#ffffff", 1)
         font_size: '14sp'
         halign: 'right'
         valign: 'middle'
