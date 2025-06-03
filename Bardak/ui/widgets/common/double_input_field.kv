@@ -1,0 +1,73 @@
+# ────────────────────────────────────────────────────────────────
+# Файл: ui/widgets/common/double_input_field.kv
+# Назначение: Верстка компонента с двумя полями ввода
+# ────────────────────────────────────────────────────────────────
+
+<DoubleInputField>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: dp(40)
+    spacing: dp(10)
+    padding: dp(5)
+
+
+#    canvas.before:
+#        Color:
+#            rgba: app.colors("RED", 1.2)  # Желтая рамка
+#        Line:
+#            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(0))
+#            width: 1
+
+    Label:
+        text: root.label_text
+        size_hint_x: 0.60
+        color: app.colors("WHITE", 1)
+        bold: True
+        halign: 'left'
+        valign: 'middle'
+        text_size: self.size
+        padding: dp(10), dp(10)
+
+    TextInput:
+        id: section_x
+        hint_text: root.first_hint
+        size_hint_x: 0.32
+        multiline: False
+        halign: 'center'
+        background_normal: ''
+        background_active: ''
+        background_color: app.colors("BLACK_TRANSPARENT", 0)
+        foreground_color: app.colors("WHITE", 1)
+
+        canvas.before:
+            Color:
+                rgba: app.colors("YELLOW", 1.2)
+            Line:
+                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(5))
+
+    Label:
+        text: "x"
+        size_hint_x: 0.1
+        color: app.colors("WHITE", 1)
+        halign: 'center'
+        valign: 'middle'
+        text_size: self.size
+        padding: dp(5), dp(5)
+        font_size: sp(24)
+
+    TextInput:
+        id: section_y
+        hint_text: root.second_hint
+        size_hint_x: 0.35
+        multiline: False
+        halign: 'center'
+        background_normal: ''
+        background_active: ''
+        background_color: app.colors("BLACK_TRANSPARENT", 0)
+        foreground_color: app.colors("WHITE", 1)
+
+        canvas.before:
+            Color:
+                rgba: app.colors("YELLOW", 1.2)
+            Line:
+                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(5))

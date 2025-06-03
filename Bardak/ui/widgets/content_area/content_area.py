@@ -16,8 +16,8 @@ from Bardak.ui.widgets.content_area.screens.add_item_screen import AddItemScreen
 from Bardak.ui.widgets.content_area.screens.storages_screen import StoragesScreen
 from Bardak.ui.widgets.content_area.screens.settings_screen import SettingsScreen
 from Bardak.ui.widgets.content_area.screens.profile_screen import ProfileScreen
-
-Builder.load_file(os.path.join(os.path.dirname(__file__), "content_area.kv"))
+#
+# Builder.load_file(os.path.join(os.path.dirname(__file__), "content_area.kv"))
 
 # ────────────────────────────────────────────────────────────────
 class ContentArea(BoxLayout):

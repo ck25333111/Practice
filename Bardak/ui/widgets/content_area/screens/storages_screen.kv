@@ -6,17 +6,32 @@
             spacing: dp(20)
 
             SimpleLabelInputs:
+                id: storage_place_name
                 label_text: "Введите место хранения"
                 hint_text: "Например: Шкаф на балконе"
 
             SimpleLabelInputs:
+                id: box_name
                 label_text: "Введите название бокса"
                 hint_text: "Например: Коробка с инструментами"
 
             SimpleLabelInputs:
+                id: section_count
                 label_text: "Количество отсеков"
                 hint_text: "Например: 3"
 
-            SimpleLabelInputs:
-                label_text: "Расположение секций"
-                hint_text: "Горизонтально или вертикально"
+            DoubleInputField:
+                id: cells_x_y
+                label_text: "Секции по X и Y"
+                first_hint: "По X"
+                second_hint: "По Y"
+
+            Button:
+                text: "Рассчитать ячейки"                      # Текст на кнопке
+                size_hint_y: None                              # Фиксированная высота
+                height: dp(50)                                 # Конкретная высота кнопки
+                background_color: app.colors("YELLOW", 1.1)    # Цвет фона — желтый с усилением
+                color: app.colors("GREEN", 1)                  # Цвет текста — чёрный
+                bold: True                                     # Жирный текст
+                on_release: root.calculate_cells()             # При нажатии вызвать метод в Python классе экрана
+

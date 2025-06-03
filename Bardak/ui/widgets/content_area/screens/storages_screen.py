@@ -22,10 +22,9 @@ from kivy.lang import Builder
 import os
 from Bardak.ui.style.screen_container import ScreenContainer
 from Bardak.ui.widgets.content_area.left_menu.left_menu import LeftMenu
+
 from Bardak.ui.widgets.common.simple_label_inputs import SimpleLabelInputs
-
-
-Builder.load_file(os.path.join(os.path.dirname(__file__), "storages_screen.kv"))
+from Bardak.ui.widgets.common.double_input_field import DoubleInputField
 
 
 class StoragesScreen(Screen):
@@ -33,4 +32,9 @@ class StoragesScreen(Screen):
     Экран "Мои Хранилища" с пошаговой формой для добавления
     места хранения, бокса, секций и ячеек с валидацией.
     """
-    pass
+
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # Builder.load_file(os.path.join(os.path.dirname(__file__), "storages_screen.kv"))
+        print("[StoragesScreen] Загружен экран")
