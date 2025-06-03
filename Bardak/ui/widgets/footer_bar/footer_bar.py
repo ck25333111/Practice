@@ -8,7 +8,7 @@ from kivy.properties import StringProperty
 from kivy.lang import Builder
 import os
 
-Builder.load_file(os.path.join(os.path.dirname(__file__), "footer_bar.kv"))
+# Builder.load_file(os.path.join(os.path.dirname(__file__), "footer_bar.kv"))
 
 class FooterBar(BoxLayout):
     """Нижняя панель с текстом версии и статусом"""

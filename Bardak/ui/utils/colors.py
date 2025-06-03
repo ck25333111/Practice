@@ -30,4 +30,7 @@ COLOR_PALETTE: dict[str, tuple[float, float, float, float]] = {
     "WHITE": hex_to_rgba("#ffffff", 1),
     "BLACK_TRANSPARENT": hex_to_rgba("#000000", 0.2),
     "GRAY": hex_to_rgba("#888888", 1),
+    "RED": hex_to_rgba("#ff0000", 1),
+    "GREEN": hex_to_rgba("#27ff00", 1),
+
 }
