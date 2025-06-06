@@ -1,10 +1,9 @@
 # ────────────────────────────────────────────────────────────────
 # Файл: ui/widgets/common/simple_label_inputs.kv
-# Назначение: Заглушка для SimpleLabelInputs, чтобы kv мог его распознать
+# Назначение: Блок с полем ввода и лэйблом для динамической генерации полей указания ячеек в секциях
 # ────────────────────────────────────────────────────────────────
 
-
-<SimpleLabelInputs@BoxLayout>:
+<SimpleLabelInpнuts>:
     orientation: 'horizontal'
     size_hint_y: None
     height: self.minimum_height
@@ -41,9 +40,7 @@
 #                width: 1
 
     # Теперь динамически создаём TextInput'ы по списку input_hints (передаем из Python)
-    # Но kv так не умеет, поэтому укажем просто несколько полей вручную или 1 для примера
 
-    # Если хочешь несколько, делай вручную через id, или добавляй из кода
     TextInput:
         id: input_field
         hint_text: root.hint_text

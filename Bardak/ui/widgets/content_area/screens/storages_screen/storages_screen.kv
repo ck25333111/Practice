@@ -1,3 +1,8 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/widgets/content_area/content_area/screens/storages_screen.kv
+# Шаблон первого экрана "Мои Хранилища" с полями и кнопкой "Рассчитатьт ячейки"
+# ────────────────────────────────────────────────────────────────
+
 <StoragesScreen>:
     ScreenContainer:
         BoxLayout:
@@ -33,5 +38,5 @@
                 background_color: app.colors("YELLOW", 1.1)    # Цвет фона — желтый с усилением
                 color: app.colors("GREEN", 1)                  # Цвет текста — чёрный
                 bold: True                                     # Жирный текст
-                on_release: root.calculate_sections()             # При нажатии вызвать метод в Python классе экрана
+                on_release: root.build_cells_fields()             # При нажатии вызвать метод в Python классе экрана
 

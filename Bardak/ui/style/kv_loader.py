@@ -28,9 +28,11 @@ def load_all_kv() -> None:
 
     # Подгружаем все экраны из content_area/screens/
     screens_dir = os.path.join(base_dir, "widgets", "content_area", "screens")
-    for filename in os.listdir(screens_dir):
-        if filename.endswith(".kv"):
-            kv_paths.append(os.path.join(screens_dir, filename))
+    # Проходим рекурсивно по всем подпапкам
+    for root, dirs, files in os.walk(screens_dir):
+        for file in files:
+            if file.endswith(".kv"):
+                kv_paths.append(os.path.join(root, file))
 
     # Загружаем каждый файл .kv через Builder.load_file
     for kv_file in kv_paths:
