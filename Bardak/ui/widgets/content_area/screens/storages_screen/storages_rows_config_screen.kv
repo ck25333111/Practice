@@ -1,0 +1,28 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/widgets/content_area/content_area/screens/storages_rows_config_screen.kv
+# Экран конфигурации количества отсеков в каждом ряду
+# ────────────────────────────────────────────────────────────────
+
+<StoragesRowsConfigScreen>:
+    ScreenContainer:
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: dp(20)
+            padding: dp(20)
+
+            ScrollView:
+                GridLayout:
+                    id: rows_inputs_container
+                    cols: 1
+                    spacing: dp(15)
+                    size_hint_y: None
+                    height: self.minimum_height
+
+            Button:
+                text: "Продолжить"
+                size_hint_y: None
+                height: dp(50)
+                background_color: app.colors("BLACK", 0)
+                color: app.colors("YELLOW", 1.1)
+                on_release:
+                    app.root.ids.content_area.switch_to("следующий_экран")

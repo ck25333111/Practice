@@ -70,17 +70,8 @@ class StoragesScreen(Screen):
 
     # ─────────Рассчитывает имена отсеков────────────────────────────
     def build_cells_fields(self) -> None:
-        """
-        Строит поля для ячеек на основе введённых данных
-        """
-        data = self.read_storage_form_data()
-        if not data:
-            return  # Данные кривые — не продолжаем
-
-        section_count: int = data["section_count"]
-        x_section: int = data["x_section"]
-        y_section: int = data["y_section"]
-
-        # 👇 А дальше твоя логика построения UI, которая использует эти значения
-        print(f"Создаём {section_count} отсеков с {x_section}x{y_section} ячеек")
+        rows_count = int(self.ids.rows_section_count.ids.input_field.text)
+        next_screen = self.manager.get_screen("storages_rows_config_screen")
+        next_screen.rows_count = rows_count
+        self.manager.current = "storages_rows_config_screen"
 
