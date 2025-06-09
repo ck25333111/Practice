@@ -1,0 +1,52 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/widgets/common/box_label_input.kv
+# Шаблон виджета BoxLabelInput
+# ────────────────────────────────────────────────────────────────
+
+<BoxLabelInput>:
+    orientation: 'vertical'
+    spacing: dp(5)
+    size_hint_y: None
+    height: self.minimum_height
+
+    Label:
+        text: root.label_text
+        color: app.colors("YELLOW", 1)
+        font_size: sp(16)
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    BoxLayout:
+        spacing: dp(10)
+        size_hint_y: None
+        height: dp(40)
+
+        TextInput:
+            id: input_1
+            hint_text: root.input_hints[0]
+            multiline: False
+            input_filter: 'int'
+            halign: 'center'
+            font_size: sp(16)
+            background_color: app.colors("BLACK", 0.9)
+            foreground_color: app.colors("YELLOW", 1)
+
+        Label:
+            text: root.divider_text
+            color: app.colors("YELLOW", 1)
+            font_size: sp(16)
+            size_hint_x: None
+            width: dp(20)
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+        TextInput:
+            id: input_2
+            hint_text: root.input_hints[1]
+            multiline: False
+            input_filter: 'int'
+            halign: 'center'
+            font_size: sp(16)
+            background_color: app.colors("BLACK", 0.9)
+            foreground_color: app.colors("YELLOW", 1)

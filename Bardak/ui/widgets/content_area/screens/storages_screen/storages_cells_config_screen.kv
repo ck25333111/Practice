@@ -1,9 +1,9 @@
 # ────────────────────────────────────────────────────────────────
-# Bardak/ui/widgets/content_area/content_area/screens/storages_rows_config_screen.kv
-# Экран конфигурации количества отсеков в каждом ряду
+# Bardak/ui/widgets/content_area/content_area/screens/storages_cells_config_screen.kv
+# Экран конфигурации ячеек внутри каждого ящика
 # ────────────────────────────────────────────────────────────────
 
-<StoragesRowsConfigScreen>:
+<StoragesCellsConfigScreen>:
     ScreenContainer:
         BoxLayout:
             orientation: 'vertical'
@@ -11,19 +11,15 @@
             padding: dp(20)
 
             ScrollView:
-                size_hint_y: 0.9  # ← растягивается на всё доступное пространство
-                do_scroll_x: False
                 GridLayout:
-                    id: rows_inputs_container
+                    id: boxes_inputs_container
                     cols: 1
                     spacing: dp(15)
                     size_hint_y: None
                     height: self.minimum_height
-            Widget:
-                size_hint_y: 0.1
+
             BoxLayout:
                 orientation: 'horizontal'
-                size_hint_y: 0.1
 
                 Button:
                     text: "Назад"
@@ -34,11 +30,11 @@
                     color: app.colors("YELLOW", 1)
                     canvas.before:
                         Color:
-                            rgba: app.colors("YELLOW", 1.2)  # Желтая рамка
+                            rgba: app.colors("YELLOW", 1.2)
                         Line:
                             rounded_rectangle: (self.x, self.y, self.width, self.height, dp(15))
                     on_release:
-                        app.root.ids.content_area.switch_to("storages_screen")
+                        app.root.ids.content_area.switch_to("storages_rows_config_screen")
 
                 Widget:
                     size_hint_x: 0.2
@@ -52,7 +48,7 @@
                     color: app.colors("YELLOW", 1)
                     canvas.before:
                         Color:
-                            rgba: app.colors("YELLOW", 1.2)  # Желтая рамка
+                            rgba: app.colors("YELLOW", 1.2)
                         Line:
                             rounded_rectangle: (self.x, self.y, self.width, self.height, dp(15))
                     on_release:

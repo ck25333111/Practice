@@ -36,10 +36,6 @@ class StoragesScreen(Screen):
     """
 
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        print("[StoragesScreen] Загружен экран")
-
     # ─────────Считывает все поля из формы ────────────────────────────
     def read_storage_form_data(self) -> dict:
         """Считывает все поля из формы добавления хранилища и возвращает словарь данных """
