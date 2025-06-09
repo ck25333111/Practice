@@ -10,19 +10,19 @@ from Bardak.ui.widgets.common.box_label_input import BoxLabelInput
 
 class StoragesCellsConfigScreen(Screen):
     boxes: list = ListProperty()
-    print(f"StoragesCellsConfigScreen")
 
     def on_pre_enter(self):
         print(f"Получили boxes: {self.boxes}")
+
         """При входе на экран — сгенерировать поля по каждому ящику"""
         container = self.ids.boxes_inputs_container
         container.clear_widgets()
 
         for index, box in enumerate(self.boxes):
-            label = f"Ячейки в ящике {box['label']} (Строки x Столбцы)"
+            label = f"{box['label']}"
             input_widget = BoxLabelInput(
                 label_text=label,
-                input_hints=["напр. 4", "напр. 5"],
+                input_hints=["По оси X", "По оси Y"],
                 divider_text="x"
             )
             container.add_widget(input_widget)

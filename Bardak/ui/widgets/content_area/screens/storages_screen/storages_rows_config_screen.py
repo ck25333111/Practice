@@ -50,7 +50,10 @@ class StoragesRowsConfigScreen(Screen):
         next_screen = self.manager.get_screen("storages_cells_config_screen")
 
         for box in boxes:
-            box['label'] = f"{chr(64 + box['row'])}{box['box']}"
+            # Придумываем читаемую подпись — это будет использоваться как label в интерфейсе
+            box['label'] = f"{box['row']} ряд  — ящик №{box['box']}"  # 🟢 Для отображения
+            # Дополнительно добавим machine_label если надо использовать кодовое имя (типа "A1")
+            box['machine_label'] = f"{chr(64 + box['row'])}{box['box']}"  # 🟡 Техническая маркировка
 
         next_screen.boxes = boxes
         self.manager.current = "storages_cells_config_screen"

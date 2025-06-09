@@ -11,6 +11,9 @@
             padding: dp(20)
 
             ScrollView:
+                size_hint_y: 1  # ← растягивается на всё доступное пространство
+                do_scroll_x: False
+
                 GridLayout:
                     id: boxes_inputs_container
                     cols: 1
@@ -20,6 +23,7 @@
 
             BoxLayout:
                 orientation: 'horizontal'
+                size_hint_y: None
 
                 Button:
                     text: "Назад"

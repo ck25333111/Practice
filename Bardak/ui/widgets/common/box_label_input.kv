@@ -4,10 +4,23 @@
 # ────────────────────────────────────────────────────────────────
 
 <BoxLabelInput>:
-    orientation: 'vertical'
+    orientation: 'horizontal'
     spacing: dp(5)
     size_hint_y: None
-    height: self.minimum_height
+    height: dp(40)
+    padding: dp(50), dp(0)
+
+
+
+#    BoxLayout:
+#        orientation: 'horizontal'
+#        spacing: dp(10)
+#        pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # 👈 Центр по горизонтали и вертикали
+#        canvas.before:
+#            Color:
+#                rgba: app.colors("RED", 1)
+#            Line:
+#                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(10))
 
     Label:
         text: root.label_text
@@ -15,38 +28,52 @@
         font_size: sp(16)
         size_hint_y: None
         height: self.texture_size[1]
+        halign: 'left'
+        valign: 'middle'
+        text_size: self.size
 
-    BoxLayout:
-        spacing: dp(10)
-        size_hint_y: None
-        height: dp(40)
+    TextInput:
+        id: input_1
+        hint_text: root.input_hints[0]
+        size_hint_x: 0.4
+        padding_y: [dp(10), dp(10)]
+        multiline: False
+        input_filter: 'int'
+        halign: 'center'
+        font_size: sp(14)
+        text_size: self.size
+        background_color: app.colors("BLACK", 0.9)
+        foreground_color: app.colors("YELLOW", 1)
+        canvas.before:
+            Color:
+                rgba: app.colors("YELLOW", 1.2)  # Желтая рамка
+            Line:
+                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(10))
 
-        TextInput:
-            id: input_1
-            hint_text: root.input_hints[0]
-            multiline: False
-            input_filter: 'int'
-            halign: 'center'
-            font_size: sp(16)
-            background_color: app.colors("BLACK", 0.9)
-            foreground_color: app.colors("YELLOW", 1)
+    Label:
+        text: root.divider_text
+        color: app.colors("YELLOW", 1)
+        font_size: sp(20)
+        size_hint_x: 0.1
+        width: dp(20)
+        halign: 'center'
+        valign: 'middle'
+        text_size: self.size
 
-        Label:
-            text: root.divider_text
-            color: app.colors("YELLOW", 1)
-            font_size: sp(16)
-            size_hint_x: None
-            width: dp(20)
-            halign: 'center'
-            valign: 'middle'
-            text_size: self.size
+    TextInput:
+        id: input_2
+        hint_text: root.input_hints[1]
+        size_hint_x: 0.4
+        padding_y: [dp(10), dp(10)]
+        multiline: False
+        input_filter: 'int'
+        halign: 'center'
+        font_size: sp(14)
+        background_color: app.colors("BLACK", 0.9)
+        foreground_color: app.colors("YELLOW", 1)
 
-        TextInput:
-            id: input_2
-            hint_text: root.input_hints[1]
-            multiline: False
-            input_filter: 'int'
-            halign: 'center'
-            font_size: sp(16)
-            background_color: app.colors("BLACK", 0.9)
-            foreground_color: app.colors("YELLOW", 1)
+        canvas.before:
+            Color:
+                rgba: app.colors("YELLOW", 1.2)  # Желтая рамка
+            Line:
+                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(10))
