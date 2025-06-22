@@ -10,18 +10,6 @@
     height: dp(40)
     padding: dp(50), dp(0)
 
-
-
-#    BoxLayout:
-#        orientation: 'horizontal'
-#        spacing: dp(10)
-#        pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # 👈 Центр по горизонтали и вертикали
-#        canvas.before:
-#            Color:
-#                rgba: app.colors("RED", 1)
-#            Line:
-#                rounded_rectangle: (self.x, self.y, self.width, self.height, dp(10))
-
     Label:
         text: root.label_text
         color: app.colors("YELLOW", 1)
@@ -36,7 +24,7 @@
         id: input_1
         hint_text: root.input_hints[0]
         size_hint_x: 0.4
-        padding_y: [dp(10), dp(10)]
+        padding: [dp(10), dp(10), dp(10), dp(10)]
         multiline: False
         input_filter: 'int'
         halign: 'center'
@@ -64,7 +52,7 @@
         id: input_2
         hint_text: root.input_hints[1]
         size_hint_x: 0.4
-        padding_y: [dp(10), dp(10)]
+        padding: [dp(10), dp(10), dp(10), dp(10)]
         multiline: False
         input_filter: 'int'
         halign: 'center'
