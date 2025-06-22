@@ -55,42 +55,26 @@ class StoragesScreen(Screen):
         except (ValueError, AttributeError):
             ws.rows_count = None
 
-        try:
-            ws.section_count = int(self.ids.section_count.ids.input_field.text)
-        except (ValueError, AttributeError):
-            ws.section_count = None
-
-        try:
-            ws.x_section = int(self.ids.cells_x_y.ids.section_x.text)
-        except (ValueError, AttributeError):
-            ws.x_section = None
-
-        try:
-            ws.y_section = int(self.ids.cells_x_y.ids.section_y.text)
-        except (ValueError, AttributeError):
-            ws.y_section = None
-
         # Логируем текущее состояние wizard_state для отладки
         logger.info(f"wizard_state сохранён: {ws.__dict__}")
 
     def build_cells_fields(self) -> None:
         """
-        Для отладки — выводит в консоль все атрибуты объекта wizard_state,
-        чтобы проверить, что данные успешно сохранились и доступны.
+        После сохранения формы переходит на экран конфигурации ящиков.
+        Все данные берёт из wizard_state.
         """
         ws = App.get_running_app().wizard_state
 
-        # print("=== Содержимое wizard_state ===")
-        # for attr in dir(ws):
-        #     # Фильтруем служебные методы и вызываемые объекты
-        #     if not attr.startswith('_') and not callable(getattr(ws, attr)):
-        #         value = getattr(ws, attr)
-        #         print(f"{attr}: {value}")
-        # print("=== Конец содержимого wizard_state ===")
+        # Проверим, что rows_count действительно установлен
+        if ws.rows_count is None or ws.rows_count <= 0:
+            logger.error(f"Некорректное значение rows_count: {ws.rows_count}")
+            return
 
-        rows_count = int(self.ids.rows_section_count.ids.input_field.text)
+        # Передаём значение на следующий экран
         next_screen = self.manager.get_screen("storages_rows_config_screen")
-        next_screen.rows_count = rows_count
+        next_screen.rows_count = ws.rows_count
+
+        # Переключаем экран
         self.manager.current = "storages_rows_config_screen"
 
     def on_next_button_pressed(self) -> None:

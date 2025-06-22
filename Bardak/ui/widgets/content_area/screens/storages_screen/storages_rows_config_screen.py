@@ -7,7 +7,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import NumericProperty, ListProperty
 from Bardak.ui.widgets.common.simple_label_inputs import SimpleLabelInputs
 from Bardak.ui.widgets.content_area.screens.storages_screen.storages_cells_config_screen import StoragesCellsConfigScreen
-
+from kivy.app import App
 
 class StoragesRowsConfigScreen(Screen):
     rows_count: int = NumericProperty(0)
@@ -44,8 +44,17 @@ class StoragesRowsConfigScreen(Screen):
         return boxes
 
     def on_continue(self) -> None:
+        """
+        Собирает количество ящиков в каждом ряду,
+        формирует структуру с подписями и кодами ящиков,
+        сохраняет в wizard_state и переходит на следующий экран.
+        """
         boxes = self.get_boxes_structure()
-        print('on_continue -> boxes', boxes)
+
+        # Сохраняем в WizardState
+        ws = App.get_running_app().wizard_state
+        ws.boxes = boxes
+
 
         next_screen = self.manager.get_screen("storages_cells_config_screen")
 
@@ -54,7 +63,6 @@ class StoragesRowsConfigScreen(Screen):
             box['label'] = f"{box['row']} ряд  — ящик №{box['box']}"  # 🟢 Для отображения
             # Дополнительно добавим machine_label если надо использовать кодовое имя (типа "A1")
             box['machine_label'] = f"{chr(64 + box['row'])}{box['box']}"  # 🟡 Техническая маркировка
-
         next_screen.boxes = boxes
         self.manager.current = "storages_cells_config_screen"
 
