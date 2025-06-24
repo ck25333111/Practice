@@ -7,7 +7,7 @@ import os
 
 OUTPUT_FILE = "ui_dump.txt"
 TARGET_EXTENSIONS = (".py", ".kv")
-ROOT_DIR = "Bardak/ui"
+ROOT_DIR = "../ui"
 
 def dump_ui_files():
     with open(OUTPUT_FILE, "w", encoding="utf-8") as out:

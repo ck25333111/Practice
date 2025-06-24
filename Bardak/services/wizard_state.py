@@ -1,3 +1,9 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/services/wizard_state.py
+# Хранилище состояния мастера добавления хранилища
+# Используется для пошагового сбора данных перед сохранением в БД
+# ────────────────────────────────────────────────────────────────
+
 from typing import Optional, List, Dict
 
 
@@ -23,12 +29,12 @@ class WizardState:
         self.rows_count: Optional[int] = None
 
         # Список всех ящиков по рядам и индексам:
-        # Пример: [{"row": 1, "box": 1, "label": "...", "machine_label": "A1"}, ...]
-        self.boxes: List[Dict] = []
+        self.sections: List[Dict] = []
 
         # Размеры ячеек в каждом ящике по machine_label:
         # Пример: {"A1": {"rows": 4, "cols": 5}}
         self.cell_sizes: Dict[str, Dict[str, int]] = {}
+
 
     def validate(self) -> None:
         """
@@ -45,17 +51,30 @@ class WizardState:
         if self.rows_count is None or self.rows_count <= 0:
             raise ValueError("Поле 'rows_count' должно быть положительным числом")
 
-        if not self.boxes:
-            raise ValueError("Список 'boxes' пуст. Нужно добавить хотя бы один ящик.")
+        if not self.sections:
+            raise ValueError("Список 'sections' пуст. Нужно добавить хотя бы один ящик.")
 
         if not self.cell_sizes:
             raise ValueError("Словарь 'cell_sizes' пуст. Нужно указать размеры ячеек.")
 
         # Дополнительно — проверим, что размеры есть для всех ящиков
-        for box in self.boxes:
+        for box in self.sections:
             label = box.get("machine_label")
             if label not in self.cell_sizes:
                 raise ValueError(f"Нет размеров ячеек для ящика '{label}'")
+
+
+    def log(self) -> None:
+        """
+        Выводит текущее состояние WizardState в консоль.
+        Используется для отладки.
+        """
+        print("=== Полный  конечный wizard_state ===")
+        for attr in dir(self):
+            if not attr.startswith('_') and not callable(getattr(self, attr)):
+                print(f"{attr}: {getattr(self, attr)}")
+        print("=== Конец конечный wizard_state ===")
+
 
     def clear(self) -> None:
         """
@@ -65,6 +84,6 @@ class WizardState:
         self.storage_place_name = None
         self.box_name = None
         self.rows_count = None
-        self.boxes.clear()
+        self.sections.clear()
         self.cell_sizes.clear()
 

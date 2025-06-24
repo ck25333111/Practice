@@ -7,38 +7,27 @@ from kivy.uix.screenmanager import Screen
 from kivy.app import App
 from kivy.properties import ListProperty
 from Bardak.ui.widgets.common.box_label_input import BoxLabelInput
+from Bardak.services.storage_wizard_db_save import StorageWizardSaver
 
 class StoragesCellsConfigScreen(Screen):
     """
-    Экран, позволяющий указать размеры ячеек для каждого ящика.
-    Используется после конфигурации рядов и ящиков.
+    Экран, позволяющий указать размеры ячеек для каждой секции.
+    Используется после ввода количества ящиков по рядам.
     """
 
-    boxes: list = ListProperty()
+    sections: list = ListProperty()
 
     def on_pre_enter(self):
-        """При входе на экран — сгенерировать поля по каждому ящику"""
-        self._build_fields_for_each_box()
+        """При входе на экран — построить поля ввода для каждой секции"""
+        self._build_fields_for_each_section()
 
-
-    def on_continue(self):
-        """
-        Обработка нажатия кнопки 'Продолжить':
-        - Собирает размеры ячеек с экрана
-        - Сохраняет в wizard_state
-        - Выводит всё содержимое для отладки
-        """
-        cell_sizes = self._extract_cell_sizes_from_inputs()
-        self._save_to_wizard_state(cell_sizes)
-        self._log_wizard_state()
-
-    def _build_fields_for_each_box(self) -> None:
-        """Очищает контейнер и создаёт по виджету для каждого ящика."""
-        container = self.ids.boxes_inputs_container
+    def _build_fields_for_each_section(self) -> None:
+        """Создаёт поля ввода X/Y для каждой секции (ящика в ряду)"""
+        container = self.ids.sections_inputs_container  # ⚠️ Переименуй в .kv файле тоже
         container.clear_widgets()
 
-        for box in self.boxes:
-            label = f"{box['label']}"
+        for section in self.sections:
+            label = f"{section['label']}"  # Например: "2 ряд — ящик №3"
             input_widget = BoxLabelInput(
                 label_text=label,
                 input_hints=["По оси X", "По оси Y"],
@@ -48,15 +37,15 @@ class StoragesCellsConfigScreen(Screen):
 
     def _extract_cell_sizes_from_inputs(self) -> dict[str, dict[str, int]]:
         """
-        Обходит все виджеты BoxLabelInput и достаёт значения X и Y.
-        Возвращает словарь вида: { "A1": {"cols": 4, "rows": 5}, ... }
+        Собирает размеры ячеек из виджетов.
+        Возвращает: {'A1': {'cols': 4, 'rows': 3}, ...}
         """
-        container = self.ids.boxes_inputs_container
+        container = self.ids.sections_inputs_container
         result = {}
 
         for idx, widget in enumerate(container.children[::-1]):
-            box_data = self.boxes[idx]
-            machine_label = box_data['machine_label']
+            section_data = self.sections[idx]
+            machine_label = section_data['machine_label']
             inputs = self._get_inputs_from_widget(widget)
 
             if len(inputs) != 2:
@@ -73,20 +62,26 @@ class StoragesCellsConfigScreen(Screen):
         return result
 
     def _get_inputs_from_widget(self, widget) -> list:
-        """Возвращает все TextInput из переданного виджета."""
+        """Находит все TextInput в переданном виджете."""
         return [child for child in widget.walk(restrict=True)
                 if child.__class__.__name__ == "TextInput"]
 
     def _save_to_wizard_state(self, cell_sizes: dict) -> None:
-        """Сохраняет cell_sizes в wizard_state."""
+        """Сохраняет данные в wizard_state приложения."""
         ws = App.get_running_app().wizard_state
         ws.cell_sizes = cell_sizes
+        ws.log()
 
-    def _log_wizard_state(self) -> None:
-        """Печатает всё содержимое wizard_state в консоль."""
+    def on_continue(self) -> None:
+        """Запуск сохранения всех данных в БД"""
+        cell_sizes = self._extract_cell_sizes_from_inputs()
+        self._save_to_wizard_state(cell_sizes)
+
         ws = App.get_running_app().wizard_state
-        print("=== Полный  конечный wizard_state ===")
-        for attr in dir(ws):
-            if not attr.startswith('_') and not callable(getattr(ws, attr)):
-                print(f"{attr}: {getattr(ws, attr)}")
-        print("=== Конец конечный wizard_state ===")
+        try:
+            saver = StorageWizardSaver(ws)
+            saver.save()
+        except Exception as e:
+            print(f"❌ Ошибка при сохранении в базу: {e}")
+        else:
+            print("✅ Успешно сохранено в базу")
