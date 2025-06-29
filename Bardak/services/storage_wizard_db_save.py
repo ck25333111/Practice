@@ -60,22 +60,22 @@ class StorageWizardSaver:
     def _save_boxes(self) -> List[Box]:
         if not self.storage_place:
             raise ValueError("Невозможно сохранить боксы без StoragePlace.")
-
         saved_boxes: List[Box] = []
 
         # self.ws.box_name — вот тут лежит название мебели, типа "Стол"
         box_name = self.ws.box_name or "Без имени"
 
-        # В wizard_state.boxes у тебя список с инфой по рядам и ящикам — их нужно использовать для _save_sections, а не для названий боксов!
-
-        # Создаём один бокс с именем мебели — в твоём примере "Стол"
-        box = Box.create(
+        # Получаем или создаём бокс для текущего места хранения
+        box, created = Box.get_or_create(
             name=box_name,
             storage_place=self.storage_place
         )
+        if created:
+            print(f"📦 Создан новый бокс: {box.name}")
+        else:
+            print(f"📦 Используем существующий бокс: {box.name}")
 
         saved_boxes.append(box)
-
         return saved_boxes
 
 

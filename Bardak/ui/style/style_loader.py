@@ -7,6 +7,7 @@ from kivy.lang import Builder
 # Список всех kv-файлов со стилями
 STYLE_FILES = [
     "ui/style/screen_container.kv",
+    "ui/style/inputs.kv",
     # "ui/style/rounded_border.kv",
     # "ui/style/buttons.kv",
     # "ui/style/forms.kv",

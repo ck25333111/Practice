@@ -1,0 +1,35 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/style/inputs.kv
+# Общие стили для элементов ввода (выпадающие списки)
+# ────────────────────────────────────────────────────────────────
+
+<StyledSpinner@Spinner>:
+    font_size: sp(16)
+    size_hint_x: 1
+    size_hint_y: None
+    height: dp(40)
+    halign: 'center'
+    valign: 'middle'
+    text_size: self.size
+    background_color: app.colors("BLACK", 0.9)
+    color: app.colors("YELLOW", 1)
+    padding: [dp(10), dp(10), dp(10), dp(10)]
+    option_cls: 'SpinnerOptionStyled'
+
+    canvas.before:
+        Color:
+            rgba: app.colors("YELLOW", 1)
+        Line:
+            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(9))
+
+<SpinnerOptionStyled@Button>:
+    background_color: app.colors("BLACK", 1)
+    color: app.colors("YELLOW", 1)
+    font_size: sp(14)
+    size_hint_y: None
+    height: dp(40)
+    canvas.before:
+        Color:
+            rgba: app.colors("YELLOW", 1)
+        Line:
+            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(9))
