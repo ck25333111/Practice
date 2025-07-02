@@ -13,7 +13,7 @@ STYLE_FILES = [
     # "ui/style/forms.kv",
     # "ui/style/containers.kv",
     # "ui/style/labels.kv",
-    # добавляй по ходу пьесы
+    # добавляум по ходу пьесы
 ]
 
 def load_all_styles() -> None:

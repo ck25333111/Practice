@@ -1,10 +1,12 @@
 # ────────────────────────────────────
+# Сервис получения данных для AddItemScreen
 # Bardak/services/add_item_service.py
 # ────────────────────────────────────
 
-from typing import List
+from typing import List, Dict
 from Bardak.models.storage.box import Box
 from Bardak.models.storage.section import Section
+from Bardak.models.storage.cell import Cell
 from Bardak.models.storage.storage_place import StoragePlace
 
 class AddItemService:
@@ -31,3 +33,18 @@ class AddItemService:
         if not box:
             return []
         return [s.name for s in Section.select().where(Section.box == box)]
+
+
+    @staticmethod
+    def get_cells_for_section(section_name: str) -> List[Dict]:
+        """
+        Получить список ячеек (cell) для конкретной секции по её имени.
+        Возвращает список словарей с полями row, column, label и categories.
+        """
+
+        section = Section.select().where(Section.name == section_name).first()
+        if not section:
+            return []
+
+        cells_query = Cell.select(Cell.row, Cell.column, Cell.label).where(Cell.section == section)
+        return [{"row": c.row, "column": c.column, "label": c.label} for c in cells_query]

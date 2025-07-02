@@ -71,3 +71,10 @@
                             values: []
                             on_text: root.on_section_selected(self.text)
                             disabled: True
+
+    BoxLayout:
+        id: cell_grid_container
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: "vertical"
+        padding: dp(4)

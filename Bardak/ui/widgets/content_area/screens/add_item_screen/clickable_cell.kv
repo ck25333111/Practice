@@ -1,0 +1,30 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/widgets/common/clickable_cell.kv
+# Визуальный стиль ClickableCell — ячейки с цветом, рамкой и надписью
+# ────────────────────────────────────────────────────────────────
+
+<ClickableCell>:
+#    text: root.label_text                   # Текст на ячейке (например 'A1')
+    font_size: sp(14)                       # Размер шрифта
+    bold: True                              # Жирный текст
+    halign: 'center'                        # Горизонтальное выравнивание
+    valign: 'middle'                        # Вертикальное выравнивание
+    text_size: self.size                    # Размер текста = размеру ячейки
+
+    size_hint: None, None                   # Фиксированный размер
+    size: dp(48), dp(48)
+
+    color: app.colors("WHITE", 1)           # Цвет текста
+
+    canvas.before:
+        Color:
+            rgba: app.colors("YELLOW", 1)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(6), dp(6), dp(6), dp(6)]
+
+        Color:
+            rgba: app.colors("YELLOW", 1)
+        Line:
+            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(6))

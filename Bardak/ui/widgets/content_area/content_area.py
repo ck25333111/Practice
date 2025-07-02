@@ -12,7 +12,7 @@ import os
 from kivy.uix.screenmanager import ScreenManager
 from Bardak.ui.widgets.content_area.screens.home_screen import HomeScreen
 from Bardak.ui.widgets.content_area.screens.search_screen import SearchScreen
-from Bardak.ui.widgets.content_area.screens.add_item_screen import AddItemScreen
+from Bardak.ui.widgets.content_area.screens.add_item_screen.add_item_screen import AddItemScreen
 from Bardak.ui.widgets.content_area.screens.storages_screen.storages_screen import StoragesScreen
 from Bardak.ui.widgets.content_area.screens.storages_screen.storages_rows_config_screen import StoragesRowsConfigScreen
 

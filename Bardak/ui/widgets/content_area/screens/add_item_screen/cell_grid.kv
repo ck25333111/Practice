@@ -1,0 +1,18 @@
+# ────────────────────────────────────────────────────────────────
+# Bardak/ui/widgets/content_area/screens/add_item_screen/cell_grid.kv
+# Виджет CellGrid — отрисовывает сетку ячеек на основе данных из базы
+# ────────────────────────────────────────────────────────────────
+
+<CellGrid@BoxLayout>:
+    orientation: "vertical"
+    id: root_grid_wrapper
+    cell_data: []  # сюда передаётся список ячеек
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 0
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    on_cell_data:
+        root.build_grid()
