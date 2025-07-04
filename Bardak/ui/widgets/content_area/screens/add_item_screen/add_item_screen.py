@@ -58,35 +58,45 @@ class AddItemScreen(Screen):
         if not box_name or box_name == "Мебель / Бокс":
             return
 
-        sections = AddItemService.get_sections_for_box(place_name, box_name)
-        self._update_section_spinner(sections)
+        # Загружаем ВСЕ ячейки по боксу (а не по одной секции)
+        cells  = AddItemService.get_cells_for_box(place_name, box_name)
+        self._update_section_spinner(cells)
+        print("📦 Загружены ячейки для бокса:", cells)
 
+        # Очищаем старую сетку, если есть
+        container = self.ids.cell_grid_container
+        container.clear_widgets()
 
-    def on_section_selected(self, section_name: str) -> None:
-        print(f"📊 Выбрана секция / ящик: {section_name}")
-        if not section_name or section_name == "Секция / Ящик":
-            return
-        # Здесь вызываем приватный метод, который отрисует сетку
-        self.display_cell_grid_for_section(section_name)
+        # Создаём новую сетку
+        grid = build_cell_grid(cells)
+        container.add_widget(grid)
 
-
-    def display_cell_grid_for_section(self,section_name):
-        print(f"Начинаем отрисовку {section_name}")
-
-        # 1. Получаем данные по ячейкам
-        cell_data = AddItemService.get_cells_for_section(section_name)
-
-        # Строим сетку
-        grid_widget = build_cell_grid(cell_data)
-
-        # Добавляем на экран
-        container = self.ids.cell_grid_container  # ← этот id должен быть в .kv-файле!
-        container.clear_widgets()  # на всякий случай очищаем
-        container.add_widget(grid_widget)
+# Отрисовка ячеек - убираем
+    # def on_section_selected(self, section_name: str) -> None:
+    #     print(f"📊 Выбрана секция / ящик: {section_name}")
+    #     if not section_name or section_name == "Секция / Ящик":
+    #         return
+    #     # Здесь вызываем приватный метод, который отрисует сетку
+    #     self.display_cell_grid_for_section(section_name)
+    #
+    #
+    # def display_cell_grid_for_section(self,section_name):
+    #     print(f"Начинаем отрисовку {section_name}")
+    #
+    #     # 1. Получаем данные по ячейкам
+    #     cell_data = AddItemService.get_cells_for_section(section_name)
+    #
+    #     # Строим сетку
+    #     grid_widget = build_cell_grid(cell_data)
+    #
+    #     # Добавляем на экран
+    #     container = self.ids.cell_grid_container  # ← этот id должен быть в .kv-файле!
+    #     container.clear_widgets()  # на всякий случай очищаем
+    #     container.add_widget(grid_widget)
 
 
     @mainthread
-    def _update_section_spinner(self, sections: List[str]) -> None:
+    def _update_section_spinner(self, sections) -> None:
         spinner = self.ids.section_spinner
         spinner.values = sections
         spinner.text = "Секция / Ящик"

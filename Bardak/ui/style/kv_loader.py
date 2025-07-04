@@ -18,6 +18,8 @@ def load_all_kv() -> None:
         os.path.join(base_dir, "widgets", "common", "double_input_field.kv"),
         os.path.join(base_dir, "widgets", "common", "simple_label_inputs.kv"),
         os.path.join(base_dir, "widgets", "common", "box_label_input.kv"),
+        os.path.join(base_dir, "widgets", "common", "section_visual.kv"),
+
 
         # Основные виджеты и экраны
         os.path.join(base_dir, "widgets", "content_area", "content_area.kv"),

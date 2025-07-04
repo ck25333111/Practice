@@ -48,3 +48,25 @@ class AddItemService:
 
         cells_query = Cell.select(Cell.row, Cell.column, Cell.label).where(Cell.section == section)
         return [{"row": c.row, "column": c.column, "label": c.label} for c in cells_query]
+
+
+    @staticmethod
+    def get_cells_for_box(place_name: str, box_name: str) -> List[Dict]:
+        """
+        Возвращает ВСЕ ячейки всех секций данного бокса.
+        """
+        place = StoragePlace.get(StoragePlace.name == place_name)
+        box = Box.get(Box.name == box_name, Box.storage_place == place)
+        sections = Section.select().where(Section.box == box)
+
+        cells = []
+        for section in sections:
+            section_cells = Cell.select().where(Cell.section == section)
+            for cell in section_cells:
+                cells.append({
+                    "row": cell.row,
+                    "column": cell.column,
+                    "label": cell.label,
+                    "occupied": bool(cell.categories),  # или другой флаг
+                })
+        return cells

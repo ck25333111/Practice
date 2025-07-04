@@ -7,24 +7,34 @@
     name: "add_item_screen"
 
     ScreenContainer:
-        FloatLayout:
+        orientation: "vertical"
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1, None
+            height: dp(100)  # общая высота блока с заголовком + выпадашки
+            pos_hint: {"top": 0.9}
+            padding: 30, 0, 10, 0
+
+
+            Label:
+                text: "Добавление предмета"
+                font_size: '24sp'
+                color: app.colors("WHITE", 1)
+                size_hint_y: 0.5
+                text_size: self.width, None  # обязательно: ширина есть, высота авто
+                halign: 'center'
+                valign: 'middle'
+#                    canvas.before:
+#                        Color:
+#                            rgba: app.colors("GREEN", 2)
+#                        Line:
+#                            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(9))
 
             BoxLayout:
-                orientation: "vertical"
-                size_hint: 1, None
-                height: dp(100)  # общая высота блока с заголовком + выпадашки
-                pos_hint: {"top": 0.9}
-                padding: 30, 0, 10, 0
-
-
-                Label:
-                    text: "Добавление предмета"
-                    font_size: '24sp'
-                    color: app.colors("WHITE", 1)
-                    size_hint_y: 0.5
-                    text_size: self.width, None  # обязательно: ширина есть, высота авто
-                    halign: 'center'
-                    valign: 'middle'
+                orientation: "horizontal"
+                spacing: dp(15)
+                size_hint_y: 1
 #                    canvas.before:
 #                        Color:
 #                            rgba: app.colors("GREEN", 2)
@@ -32,49 +42,39 @@
 #                            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(9))
 
                 BoxLayout:
-                    orientation: "horizontal"
-                    spacing: dp(15)
-                    size_hint_y: 1
-#                    canvas.before:
-#                        Color:
-#                            rgba: app.colors("GREEN", 2)
-#                        Line:
-#                            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(9))
+                    orientation: "vertical"
+                    spacing: dp(4)
+                    StyledSpinner:
+                        id: place_spinner
+                        text: "Место хранения"
+                        values: []
+                        disabled: False
+                        on_text:
+                            root.on_place_selected(self.text)
 
-                    BoxLayout:
-                        orientation: "vertical"
-                        spacing: dp(4)
-                        StyledSpinner:
-                            id: place_spinner
-                            text: "Место хранения"
-                            values: []
-                            disabled: False
-                            on_text:
-                                root.on_place_selected(self.text)
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(4)
+                    StyledSpinner:
+                        id: box_spinner
+                        text: "Мебель / Бокс"
+                        values: []
+                        on_text: root.on_box_selected(self.text)
+                        disabled: True
 
-                    BoxLayout:
-                        orientation: "vertical"
-                        spacing: dp(4)
-                        StyledSpinner:
-                            id: box_spinner
-                            text: "Мебель / Бокс"
-                            values: []
-                            on_text: root.on_box_selected(self.text)
-                            disabled: True
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(4)
+                    StyledSpinner:
+                        id: section_spinner
+                        text: "Секция / Ящик"
+                        values: []
+                        on_text: root.on_section_selected(self.text)
+                        disabled: True
 
-                    BoxLayout:
-                        orientation: "vertical"
-                        spacing: dp(4)
-                        StyledSpinner:
-                            id: section_spinner
-                            text: "Секция / Ящик"
-                            values: []
-                            on_text: root.on_section_selected(self.text)
-                            disabled: True
-
-    BoxLayout:
-        id: cell_grid_container
-        size_hint_y: None
-        height: self.minimum_height
-        orientation: "vertical"
-        padding: dp(4)
+        BoxLayout:
+            id: cell_grid_container
+            size_hint_y: 0.5
+            height: self.minimum_height
+            orientation: "vertical"
+            padding: [dp(30), dp(0), dp(20), dp(50), ]

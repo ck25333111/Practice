@@ -69,10 +69,11 @@ def fill_matrix_with_cells(matrix: List[List[Optional[ClickableCell]]], cell_dat
     for cell in cell_data:
         row_idx = cell["row"] - 1  # 0-индексация
         col_idx = cell["column"] - 1
-        label = cell["label"]
+        label = cell["label"]  # метка ячейки, типа 'A1'
+        occupied = cell.get("occupied", False)  # если нет ключа — считаем, что не занята
 
-        # Создаём виджет ClickableCell (пока без занятости)
-        cell_widget = ClickableCell(label=label, occupied=False)
+        # Создаём ячейку с правильным состоянием занятости
+        cell_widget = ClickableCell(label=label, occupied=occupied)
 
         # Кладём в матрицу по координатам
         matrix[row_idx][col_idx] = cell_widget

@@ -14,12 +14,13 @@
                 size_hint_y: 1  # ← растягивается на всё доступное пространство
                 do_scroll_x: False
 
-                GridLayout:
+                BoxLayout:
                     id: sections_inputs_container
-                    cols: 1
+                    orientation: 'vertical'
                     spacing: dp(15)
                     size_hint_y: None
                     height: self.minimum_height
+
 
             BoxLayout:
                 orientation: 'horizontal'
