@@ -75,7 +75,7 @@ class StoragesCellsConfigScreen(Screen):
 
         row_box = BoxLayout(
             orientation="horizontal",
-            spacing=20,
+            spacing=5,
             size_hint_y=None
         )
         row_box.bind(minimum_width=row_box.setter("width"))  # если вдруг по ширине
